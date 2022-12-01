@@ -34,7 +34,8 @@ namespace FundRaiserCloudWeb.Pages.Categories
             {
                 _db.Category.Update(Category);
                 await _db.SaveChangesAsync();
-                return RedirectToPage("Index");
+				TempData["success"] = "Category updated successfully";
+				return RedirectToPage("Index");
             }
             return Page();
         }
