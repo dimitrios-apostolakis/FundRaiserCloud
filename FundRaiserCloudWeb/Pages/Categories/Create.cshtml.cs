@@ -21,12 +21,12 @@ namespace FundRaiserCloudWeb.Pages.Categories
 
         public async Task<IActionResult> OnPost()//no bind->(Category category)
         {
-            if (Category.Name == Category.DisplayOrder.ToString())
+            if (Category.Name == Category.DisplayOrder.ToString())  //Custom Validation
             {
-                ModelState.AddModelError(string.Empty, "The DisplayOrder cannot exactly match the Name."); //CustomError || string.Empty || name 
+                ModelState.AddModelError(string.Empty, "The DisplayOrder cannot exactly match the Name."); //CustomError || string.Empty || Category.name 
             }
 
-            if (ModelState.IsValid)
+            if (ModelState.IsValid) //Server Side Validation
             {
                 await _db.Category.AddAsync(Category);
                 await _db.SaveChangesAsync();
