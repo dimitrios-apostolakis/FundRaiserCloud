@@ -1,10 +1,11 @@
 ﻿@page
-@model FundRaiserCloudWeb.Pages.Categories.CreateModel
+@model FundRaiserCloudWeb.Pages.Categories.EditModel
 
 <form method="post">
+	<input hidden asp-for="Category.Id" />	@*id==0 bcs no id fields in both input*@
 	<div class="border p-3 mt-4">
 		<div class="row pb-2">
-			<h2 class="text-primary pl-3">Create Category</h2>
+			<h2 class="text-primary pl-3">Edit Category</h2>
 			<hr />
 		</div>
 		<div asp-validation-summary="All"></div>
@@ -18,7 +19,7 @@
 			<input asp-for="Category.DisplayOrder" class="form-control" />
 			<span asp-validation-for="Category.DisplayOrder" class="text-danger"></span>
 		</div>
-		<button type="submit" class="btn btn-primary" style="width:150px">Create</button>
+		<button type="submit" class="btn btn-primary" style="width:150px">Update</button>
 		<a asp-page="Index" class="btn btn-secondary" style="width:150px"> Back to List</a>
 	</div>
 </form>
