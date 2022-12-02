@@ -1,7 +1,7 @@
-﻿using FundRaiserWeb.Models;
+﻿using FundRaiser.Models;
 using Microsoft.EntityFrameworkCore;
 
-namespace FundRaiserCloudWeb.Data
+namespace FundRaiser.DataAccess.Data
 {
     public class ApplicationDbContext : DbContext
     {

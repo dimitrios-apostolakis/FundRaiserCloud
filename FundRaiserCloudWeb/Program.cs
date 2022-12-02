@@ -1,4 +1,4 @@
-using FundRaiserCloudWeb.Data;
+using FundRaiser.DataAccess.Data;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);

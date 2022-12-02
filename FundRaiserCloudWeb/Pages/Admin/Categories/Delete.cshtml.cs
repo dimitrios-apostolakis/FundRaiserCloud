@@ -1,17 +1,17 @@
-using FundRaiserCloudWeb.Data;
-using FundRaiserWeb.Models;
+using FundRaiser.DataAccess.Data;
+using FundRaiser.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
-namespace FundRaiserCloudWeb.Pages.Categories
+namespace FundRaiserCloudWeb.Pages.Admin.Categories
 {
     [BindProperties]    //global use of bind
-    public class EditModel : PageModel
+    public class DeleteModel : PageModel
     {
         private readonly ApplicationDbContext _db;
         //[BindProperty]    //more than 1 should be put individually
         public Category Category { get; set; }
-        public EditModel(ApplicationDbContext db)
+        public DeleteModel(ApplicationDbContext db)
         {
             _db = db;
         }
@@ -25,16 +25,12 @@ namespace FundRaiserCloudWeb.Pages.Categories
 
         public async Task<IActionResult> OnPost()//no bind->(Category category)
         {
-            if (Category.Name == Category.DisplayOrder.ToString())  //Custom Validation
+            var categoryFromDb = _db.Category.Find(Category.Id);
+            if (categoryFromDb != null)
             {
-                ModelState.AddModelError(string.Empty, "The DisplayOrder cannot exactly match the Name."); //CustomError || string.Empty || Category.name 
-            }
-
-            if (ModelState.IsValid) //Server Side Validation
-            {
-                _db.Category.Update(Category);
+                _db.Category.Remove(categoryFromDb);
                 await _db.SaveChangesAsync();
-				TempData["success"] = "Category updated successfully";
+				TempData["success"] = "Category deleted successfully";
 				return RedirectToPage("Index");
             }
             return Page();

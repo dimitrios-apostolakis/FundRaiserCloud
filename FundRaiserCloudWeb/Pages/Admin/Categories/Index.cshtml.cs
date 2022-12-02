@@ -1,9 +1,9 @@
-using FundRaiserCloudWeb.Data;
-using FundRaiserWeb.Models;
+using FundRaiser.DataAccess.Data;
+using FundRaiser.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
-namespace FundRaiserCloudWeb.Pages.Categories
+namespace FundRaiserCloudWeb.Pages.Admin.Categories
 {
     public class IndexModel : PageModel
     {
