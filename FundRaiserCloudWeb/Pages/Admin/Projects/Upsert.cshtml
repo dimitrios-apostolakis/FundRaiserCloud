@@ -1,7 +1,8 @@
 ﻿@page
 @model FundRaiserCloudWeb.Pages.Admin.Projects.UpsertModel
 
-<form method="post" enctype="multipart/form-data">  @*import data*@
+<form method="post" enctype="multipart/form-data">
+    @*import data*@
     <input asp-for="Project.Id" hidden />
     <div class="border p-3 mt-4">
         <div class="row pb-2">
@@ -50,14 +51,21 @@
                     <span asp-validation-for="Project.CategoryId" class="text-danger"></span>
                 </div>
             </div>
-        <div class="col-3">
+            <div class="col-3">
                 @if (Model.Project.Id != 0)
                 {
-                    <img src="@Model.Project.Image" width="100%" style="border-radius:5px; border:1px solid #bbb9b9"/>
+                    <img src="@Model.Project.Image" width="100%" style="border-radius:5px; border:1px solid #bbb9b9" />
                 }
+            </div>
         </div>
-        </div>
-        <button type="submit" class="btn btn-primary" style="width:150px">@(Model.Project.Id != 0 ? "Update" : "Create")</button>
+        @if (Model.Project.Id != 0)
+        {
+            <button type="submit" class="btn btn-primary" style="width:150px;">Update</button>
+        }
+        else
+        {
+            <button type="submit" onclick="return ValidateInput()" class="btn btn-primary" style="width:150px;">Create</button>
+        }
         <a asp-page="Index" class="btn btn-secondary" style="width:150px"> Back to List</a>
     </div>
 </form>
@@ -75,6 +83,17 @@
                 { value: 'Email', title: 'Email' },
             ]
         });
+        function ValidateInput() {
+            if (document.getElementById("uploadBox").value == "") {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: 'Please upload an Image!',
+                });
+                return false;
+            }
+            return true;
+        }
     </script>
     @{
         <partial name="_ValidationScriptsPartial" />

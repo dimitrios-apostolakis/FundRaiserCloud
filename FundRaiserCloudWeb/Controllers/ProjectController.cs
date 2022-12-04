@@ -22,7 +22,7 @@ namespace FundRaiserCloudWeb.Controllers
 			return Json(new { data = projectList });
 		}
 
-        [HttpDelete]
+        [HttpDelete("{id}")]
         public IActionResult Delete(int id)
         {
             var objFromDb = _unitOfWork.Project.GetFirstOrDefault(u => u.Id == id);
