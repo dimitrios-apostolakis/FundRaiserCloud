@@ -56,8 +56,34 @@ namespace FundRaiserCloudWeb.Pages.Admin.Projects
 			}
 			else
 			{
-				//edit
-			}
+                //edit
+                var objFromDb = _unitOfWork.Project.GetFirstOrDefault(u => u.Id == Project.Id);
+                if (files.Count > 0)
+                {
+                    string fileName_new = Guid.NewGuid().ToString();
+                    var uploads = Path.Combine(webRootPath, @"images\projectItems");
+                    var extension = Path.GetExtension(files[0].FileName);
+
+                    //delete the old image
+                    var oldImagePath = Path.Combine(webRootPath, objFromDb.Image.TrimStart('\\'));
+                    if (System.IO.File.Exists(oldImagePath))
+                    {
+                        System.IO.File.Delete(oldImagePath);
+                    }
+                    //new upload
+                    using (var fileStream = new FileStream(Path.Combine(uploads, fileName_new + extension), FileMode.Create))
+                    {
+                        files[0].CopyTo(fileStream);
+                    }
+                    Project.Image = @"\images\projectItems\" + fileName_new + extension;
+                }
+                else
+                {
+                    Project.Image = objFromDb.Image;
+                }
+                _unitOfWork.Project.Update(Project);
+                _unitOfWork.Save();
+            }
 
 			return RedirectToPage("./Index");
 		}
