@@ -1,0 +1,36 @@
+﻿using FundRaiser.DataAccess.Data;
+using FundRaiser.DataAccess.Repository.IRepository;
+using FundRaiser.Models;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace FundRaiser.DataAccess.Repository
+{
+    public class ProjectRepository : Repository<Project>, IProjectRepository
+    {
+        private readonly ApplicationDbContext _db;
+
+        public ProjectRepository(ApplicationDbContext db) : base(db)
+        {
+            _db = db;
+        }
+        
+        public void Update(Project obj)
+        {
+            var objFromDb = _db.Project.FirstOrDefault(u => u.Id == obj.Id);
+            objFromDb.Title = obj.Title;
+            objFromDb.Description = obj.Description;
+            objFromDb.Days = obj.Days;
+            objFromDb.ProjectGoal = obj.ProjectGoal;
+            objFromDb.NumberOfBenefits = obj.NumberOfBenefits;
+            objFromDb.CategoryId = obj.CategoryId;
+            if (objFromDb.Image != null )
+            {
+                objFromDb.Image= obj.Image;
+            }
+        }
+    }
+}

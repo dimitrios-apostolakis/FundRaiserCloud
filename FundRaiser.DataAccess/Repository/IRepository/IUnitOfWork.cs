@@ -9,6 +9,7 @@ namespace FundRaiser.DataAccess.Repository.IRepository
     public interface IUnitOfWork : IDisposable
     {
         ICategoryRepository Category { get; }
+        IProjectRepository Project { get; }
         void Save();
     }
 }

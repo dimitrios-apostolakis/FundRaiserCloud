@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -37,6 +38,7 @@ namespace FundRaiser.Models
         //public string UserId { get; set; }
         //[DataType(DataType.Date)]
         //public DateTime StartDate { get; set; }
+        [ForeignKey("CategoryId")]
         public int CategoryId { get; set; }
         public Category Category { get; set; }
         //public AspNetUsers User { get; set; }

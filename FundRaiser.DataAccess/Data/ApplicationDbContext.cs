@@ -9,5 +9,6 @@ namespace FundRaiser.DataAccess.Data
         {
         }
         public DbSet<Category> Category { get; set; }
+        public DbSet<Project> Project { get; set; }
     }
 }
