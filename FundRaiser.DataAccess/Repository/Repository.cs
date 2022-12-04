@@ -18,17 +18,28 @@ namespace FundRaiser.DataAccess.Repository
         public Repository(ApplicationDbContext db)
         {
             _db = db;
-            this.dbSet = db.Set<T>();
+			//ObjType,Category
+			//_db.Project.Include(u => u.Category).Include(u => u.ObjType);
+			this.dbSet = db.Set<T>();
         }
         public void Add(T entity)
         {
             dbSet.Add(entity);
         }
 
-        public IEnumerable<T> GetAll()
+        public IEnumerable<T> GetAll(string? includeProperties = null)
         {
             IQueryable<T> query = dbSet;
-            return query.ToList();
+			if (includeProperties != null)
+			{
+				//abc,,xyz -> abc xyz
+				foreach (var includeProperty in includeProperties.Split(
+					new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries))
+				{
+					query = query.Include(includeProperty);
+				}
+			}
+			return query.ToList();
         }
 
         public T GetFirstOrDefault(Expression<Func<T, bool>>? filter = null)
