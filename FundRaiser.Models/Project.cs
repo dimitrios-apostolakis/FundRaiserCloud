@@ -39,6 +39,7 @@ namespace FundRaiser.Models
         //[DataType(DataType.Date)]
         //public DateTime StartDate { get; set; }
         [ForeignKey("CategoryId")]
+        [Display(Name = "Category")]
         public int CategoryId { get; set; }
         public Category Category { get; set; }
         //public AspNetUsers User { get; set; }

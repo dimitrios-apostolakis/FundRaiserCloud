@@ -11,14 +11,30 @@
 		</div>
 		<div asp-validation-summary="All"></div>
 		<div class="mb-3">
-			@*<label asp-for="Category.Name"></label>
-			<input asp-for="Category.Name" class="form-control" />
-			<span asp-validation-for="Category.Name" class="text-danger"></span>*@
+			<label asp-for="Project.Title"></label>
+			<input asp-for="Project.Title" class="form-control" />
+			<span asp-validation-for="Project.Title" class="text-danger"></span>
 		</div>
 		<div class="mb-3">
-			@*<label asp-for="Category.DisplayOrder"></label>
-			<input asp-for="Category.DisplayOrder" class="form-control" />
-			<span asp-validation-for="Category.DisplayOrder" class="text-danger"></span>*@
+			<label asp-for="Project.Description"></label>
+			<input asp-for="Project.Description" class="form-control" />
+			<span asp-validation-for="Project.Description" class="text-danger"></span>
+		</div>
+		<div class="mb-3">
+			<label asp-for="Project.ProjectGoal"></label>
+			<input asp-for="Project.ProjectGoal" class="form-control" />
+			<span asp-validation-for="Project.ProjectGoal" class="text-danger"></span>
+		</div>
+		<div class="mb-3">
+			<label asp-for="Project.Image"></label>
+			<input type="file" name="files" id="uploadBox" class="form-control" />
+		</div>
+		<div class="mb-3">
+			<label asp-for="Project.CategoryId"></label>
+			<select asp-for="Project.CategoryId" asp-items="Model.CategoryList" class="form-select">
+				<option disabled selected>-Select Category-</option>
+			</select>
+			<span asp-validation-for="Project.CategoryId" class="text-danger"></span>
 		</div>
 		<button type="submit" class="btn btn-primary" style="width:150px">Create</button>
 		<a asp-page="Index" class="btn btn-secondary" style="width:150px"> Back to List</a>
