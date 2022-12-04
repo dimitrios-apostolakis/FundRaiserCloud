@@ -1,4 +1,5 @@
 using FundRaiser.DataAccess.Data;
+using FundRaiser.DataAccess.Repository.IRepository;
 using FundRaiser.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
@@ -8,12 +9,12 @@ namespace FundRaiserCloudWeb.Pages.Admin.Categories
     [BindProperties]    //global use of bind
     public class CreateModel : PageModel
     {
-        private readonly ApplicationDbContext _db;
+        private readonly IUnitOfWork _unitOfWork;
         //[BindProperty]    //more than 1 should be put individually
         public Category Category { get; set; }
-        public CreateModel(ApplicationDbContext db)
+        public CreateModel(IUnitOfWork unitOfWork)
         {
-            _db = db;
+            _unitOfWork = unitOfWork;
         }
         public void OnGet()
         {
@@ -28,8 +29,8 @@ namespace FundRaiserCloudWeb.Pages.Admin.Categories
 
             if (ModelState.IsValid) //Server Side Validation
             {
-                await _db.Category.AddAsync(Category);
-                await _db.SaveChangesAsync();
+                _unitOfWork.Category.Add(Category);
+                _unitOfWork.Save();
 				TempData["success"] = "Category created successfully";
 				return RedirectToPage("Index");
             }

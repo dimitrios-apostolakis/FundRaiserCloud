@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace FundRaiser.DataAccess.Repository
 {
-    internal class CategoryRepository : Repository<Category>, ICategoryRepository
+    public class CategoryRepository : Repository<Category>, ICategoryRepository
     {
         private readonly ApplicationDbContext _db;
 
@@ -17,11 +17,7 @@ namespace FundRaiser.DataAccess.Repository
         {
             _db = db;
         }
-        public void Save()
-        {
-            _db.SaveChanges();
-        }
-
+        
         public void Update(Category category)
         {
             var objFromDb = _db.Category.FirstOrDefault(u => u.Id == category.Id);

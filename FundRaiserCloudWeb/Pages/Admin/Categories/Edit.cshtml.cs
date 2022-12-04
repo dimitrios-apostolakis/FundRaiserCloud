@@ -1,4 +1,5 @@
 using FundRaiser.DataAccess.Data;
+using FundRaiser.DataAccess.Repository.IRepository;
 using FundRaiser.Models;
 //using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
@@ -9,17 +10,17 @@ namespace FundRaiserCloudWeb.Pages.Admin.Categories
     [BindProperties]    //global use of bind
     public class EditModel : PageModel
     {
-        private readonly ApplicationDbContext _db;
+        private readonly IUnitOfWork _unitOfWork;
         //[BindProperty]    //more than 1 should be put individually
         public Category Category { get; set; }
-        public EditModel(ApplicationDbContext db)
+        public EditModel(IUnitOfWork unitOfWork)
         {
-            _db = db;
+            _unitOfWork = unitOfWork;
         }
         public void OnGet(int id)
         {
-            Category = _db.Category.Find(id);
-            //Category = _db.Category.FirstOrDefault(u=>u.Id==id);
+            //Category = _unitOfWork.Category.Find(id);
+            Category = _unitOfWork.Category.GetFirstOrDefault(u=>u.Id==id);
             //Category = _db.Category.SingleOrDefault(u => u.Id == id);
             //Category = _db.Category.Where(u => u.Id == id).FirstOrDefault;
         }
@@ -33,8 +34,8 @@ namespace FundRaiserCloudWeb.Pages.Admin.Categories
 
             if (ModelState.IsValid) //Server Side Validation
             {
-                _db.Category.Update(Category);
-                await _db.SaveChangesAsync();
+                _unitOfWork.Category.Update(Category);
+                _unitOfWork.Save();
 				TempData["success"] = "Category updated successfully";
 				return RedirectToPage("Index");
             }
