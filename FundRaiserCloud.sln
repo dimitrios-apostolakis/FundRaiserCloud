@@ -5,11 +5,11 @@ VisualStudioVersion = 17.4.33103.184
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FundRaiserCloudWeb", "FundRaiserCloudWeb\FundRaiserCloudWeb.csproj", "{6C5C15F3-3F6E-4672-8D08-399DEBFEFC19}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FundRaiser.DataAccess", "FundRaiser.DataAccess\FundRaiser.DataAccess.csproj", "{6D3AE92E-3A6A-4AA9-8EF9-885A35F75E82}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FundRaiser.DataAccess", "FundRaiser.DataAccess\FundRaiser.DataAccess.csproj", "{6D3AE92E-3A6A-4AA9-8EF9-885A35F75E82}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FundRaiser.Models", "FundRaiser.Models\FundRaiser.Models.csproj", "{981C07D9-5EA8-4218-8D5F-50FB42443B2E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FundRaiser.Models", "FundRaiser.Models\FundRaiser.Models.csproj", "{981C07D9-5EA8-4218-8D5F-50FB42443B2E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FundRaiser.Utility", "FundRaiser.Utility\FundRaiser.Utility.csproj", "{3B6E5FD4-3638-462F-98BC-EC6060CAA5B0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FundRaiser.Utility", "FundRaiser.Utility\FundRaiser.Utility.csproj", "{3B6E5FD4-3638-462F-98BC-EC6060CAA5B0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
