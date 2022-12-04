@@ -14,9 +14,9 @@
                 "data": "id",
                 "render": function (data) {
                     return `<div class="w-75 btn-group" >
-                            <a href="/Admin/MenuItems/upsert?id=${data}"  class="btn btn-success text-white mx-2">
+                            <a href="/Admin/Projects/upsert?id=${data}"  class="btn btn-success text-white mx-2">
                             <i class="bi bi-pencil-square"></i>  </a>
-                            <a href="/Admin/MenuItems/upsert?id=${data}"  class="btn btn-danger text-white mx-2">
+                            <a href="/Admin/Projects/upsert?id=${data}"  class="btn btn-danger text-white mx-2">
                              <i class="bi bi-trash-fill"></i>  </a>
                             </div>`
                 },

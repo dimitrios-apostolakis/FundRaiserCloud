@@ -21,8 +21,13 @@ namespace FundRaiserCloudWeb.Pages.Admin.Projects
             _hostEnvironment = hostEnvironment;
             Project = new();
         }
-        public void OnGet()
+        public void OnGet(int? id)
         {
+			if (id != null)
+			{
+				//Edit
+				Project = _unitOfWork.Project.GetFirstOrDefault(u => u.Id == id);
+			}
 			CategoryList = _unitOfWork.Category.GetAll().Select(i => new SelectListItem()
 			{
 				Text = i.Name,
