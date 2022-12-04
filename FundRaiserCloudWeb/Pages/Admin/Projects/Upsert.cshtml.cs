@@ -11,12 +11,14 @@ namespace FundRaiserCloudWeb.Pages.Admin.Projects
     public class UpsertModel : PageModel
     {
         private readonly IUnitOfWork _unitOfWork;
+        private readonly IWebHostEnvironment _hostEnvironment;
         //[BindProperty]    //more than 1 should be put individually
         public Project Project { get; set; }
         public IEnumerable<SelectListItem> CategoryList { get; set; }
-        public UpsertModel(IUnitOfWork unitOfWork)
+        public UpsertModel(IUnitOfWork unitOfWork, IWebHostEnvironment hostEnvironment)
         {
             _unitOfWork = unitOfWork;
+            _hostEnvironment = hostEnvironment;
             Project = new();
         }
         public void OnGet()
@@ -28,16 +30,31 @@ namespace FundRaiserCloudWeb.Pages.Admin.Projects
 			});
 		}
 
-        public async Task<IActionResult> OnPost()//no bind->(Category category)
+        public async Task<IActionResult> OnPost()
         {
-            //if (ModelState.IsValid) //Server Side Validation
-            //{
-            //    _unitOfWork.Project.Add(Project);
-            //    _unitOfWork.Save();
-            //    TempData["success"] = "Category created successfully";
-            //    return RedirectToPage("Index");
-            //}
-            return Page();
-        }
+			string webRootPath = _hostEnvironment.WebRootPath;
+			var files = HttpContext.Request.Form.Files;
+			if (Project.Id == 0)
+			{
+				//create
+				string fileName_new = Guid.NewGuid().ToString();
+				var uploads = Path.Combine(webRootPath, @"images\projectItems");
+				var extension = Path.GetExtension(files[0].FileName);
+
+				using (var fileStream = new FileStream(Path.Combine(uploads, fileName_new + extension), FileMode.Create))
+				{
+					files[0].CopyTo(fileStream);
+				}
+				Project.Image = @"\images\projectItems\" + fileName_new + extension;
+				_unitOfWork.Project.Add(Project);
+				_unitOfWork.Save();
+			}
+			else
+			{
+				//edit
+			}
+
+			return RedirectToPage("./Index");
+		}
     }
 }

@@ -24,7 +24,7 @@ namespace FundRaiser.Models
         [Required]
         //[DisplayName("Description")]
         public string Description { get; set; }
-        [DisplayName("Goal")]
+        [DisplayName("Project Goal")]
         [Range(10, 1000000, ErrorMessage = "The funding goal must be between 10 to 1 million euros.")]
         public double ProjectGoal { get; set; }
         [Range(7, 60, ErrorMessage = "The funding period must be between 7 to 60 days.")]

@@ -26,6 +26,16 @@
 			<span asp-validation-for="Project.ProjectGoal" class="text-danger"></span>
 		</div>
 		<div class="mb-3">
+			<label asp-for="Project.Days"></label>
+			<input asp-for="Project.Days" class="form-control" />
+			<span asp-validation-for="Project.Days" class="text-danger"></span>
+		</div>
+		<div class="mb-3">
+			<label asp-for="Project.NumberOfBenefits"></label>
+			<input asp-for="Project.NumberOfBenefits" class="form-control" />
+			<span asp-validation-for="Project.NumberOfBenefits" class="text-danger"></span>
+		</div>
+		<div class="mb-3">
 			<label asp-for="Project.Image"></label>
 			<input type="file" name="files" id="uploadBox" class="form-control" />
 		</div>
