@@ -44,3 +44,5 @@ app.MapRazorPages();
 app.MapControllers();
 
 app.Run();
+
+//Check to see the push
