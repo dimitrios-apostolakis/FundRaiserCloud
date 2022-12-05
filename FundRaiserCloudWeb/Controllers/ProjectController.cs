@@ -16,7 +16,9 @@ namespace FundRaiserCloudWeb.Controllers
 			_unitOfWork = unitOfWork;
             _hostEnvironment = hostEnvironment;
         }
-		public IActionResult Get()
+
+        [HttpGet()]
+        public IActionResult Get()
 		{
 			var projectList = _unitOfWork.Project.GetAll(includeProperties: "Category");
 			return Json(new { data = projectList });

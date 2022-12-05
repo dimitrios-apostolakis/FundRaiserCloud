@@ -33,6 +33,7 @@ namespace FundRaiser.Models
         [Range(1, 8, ErrorMessage = "The Number of Rewards must be between 1 to 8.")]
         [DisplayName("Number of Rewards")]
         public int NumberOfBenefits { get; set; }
+
         public string Image { get; set; }
         //public string VideoUrl { get; set; }
         //public string UserId { get; set; }
@@ -42,6 +43,9 @@ namespace FundRaiser.Models
         [Display(Name = "Category")]
         public int CategoryId { get; set; }
         public Category Category { get; set; }
+
+        //status progress
+
         //public AspNetUsers User { get; set; }
         //public ICollection<Benefit> Benefit { get; set; }
         //public ICollection<UsersBenefits> UsersBenefits { get; set; }
