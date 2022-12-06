@@ -7,6 +7,8 @@ using System.Threading.Tasks;
 namespace FundRaiser.Utility
 {
     public static class SD
-    {//don't have to create an object of this class, hold all static details
+    {
+        public const string ProjectCreatorRole = "Project Creator";
+        public const string BackerRole = "Backer";
     }
 }

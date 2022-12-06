@@ -21,6 +21,7 @@
   <ItemGroup>
     <ProjectReference Include="..\FundRaiser.DataAccess\FundRaiser.DataAccess.csproj" />
     <ProjectReference Include="..\FundRaiser.Models\FundRaiser.Models.csproj" />
+    <ProjectReference Include="..\FundRaiser.Utility\FundRaiser.Utility.csproj" />
   </ItemGroup>
 
   <ItemGroup>
