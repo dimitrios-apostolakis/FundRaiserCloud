@@ -22,7 +22,7 @@ namespace FundRaiser.DataAccess.Repository
         {
             var objFromDb = _db.Category.FirstOrDefault(u => u.Id == category.Id);
             objFromDb.Name = category.Name;
-            objFromDb.DisplayOrder = category.DisplayOrder;
+            //objFromDb.DisplayOrder = category.DisplayOrder;
         }
     }
 }

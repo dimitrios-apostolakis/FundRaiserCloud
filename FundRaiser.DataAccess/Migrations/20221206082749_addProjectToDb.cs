@@ -4,7 +4,7 @@
 
 namespace FundRaiser.DataAccess.Migrations
 {
-    public partial class addCategoryToDb : Migration
+    public partial class addProjectToDb : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

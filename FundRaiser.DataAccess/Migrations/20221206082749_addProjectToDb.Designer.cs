@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FundRaiser.DataAccess.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20221204134819_addProjectToDb")]
+    [Migration("20221206082749_addProjectToDb")]
     partial class addProjectToDb
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
