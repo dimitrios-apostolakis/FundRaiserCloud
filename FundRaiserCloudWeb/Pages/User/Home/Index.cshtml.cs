@@ -20,7 +20,7 @@ namespace FundRaiserCloudWeb.Pages.User.Home
         public void OnGet()
         {
             ProjectList = _unitOfWork.Project.GetAll(includeProperties: "Category");
-            CategoryList = _unitOfWork.Category.GetAll(orderby: u => u.OrderBy(c => c.DisplayOrder));
+            CategoryList = _unitOfWork.Category.GetAll(/*orderby: u => u.OrderBy(c => c.DisplayOrder)*/);
         }
     }
 }
