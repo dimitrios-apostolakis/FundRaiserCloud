@@ -16,10 +16,12 @@ namespace FundRaiser.DataAccess.Repository
             _db = db;
             Category = new CategoryRepository(_db);
             Project = new ProjectRepository(_db);
+            Benefit = new BenefitRepository(_db);
         }
 
         public ICategoryRepository Category { get; private set; }
         public IProjectRepository Project { get; private set; }
+        public IBenefitRepository Benefit { get; private set; }
         public void Dispose()
         {
             _db.Dispose();

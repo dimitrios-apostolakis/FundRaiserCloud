@@ -11,18 +11,12 @@ namespace FundRaiser.Models
 {
     public class Project
     {
-        //public Project()
-        //{
-        //    Benefit = new List<Benefit>();
-        //}
-
+        
         [Key]
         public int Id { get; set; }
         [Required]
-        //[DisplayName("Title")]
         public string Title { get; set; }
         [Required]
-        //[DisplayName("Description")]
         public string Description { get; set; }
         [DisplayName("Project Goal")]
         [Range(10, 1000000, ErrorMessage = "The funding goal must be between 10 to 1 million euros.")]
@@ -35,10 +29,7 @@ namespace FundRaiser.Models
         public int NumberOfBenefits { get; set; }
 
         public string Image { get; set; }
-        //public string VideoUrl { get; set; }
-        //public string UserId { get; set; }
-        //[DataType(DataType.Date)]
-        //public DateTime StartDate { get; set; }
+        
         [ForeignKey("CategoryId")]
         [Display(Name = "Category")]
         public int CategoryId { get; set; }
@@ -46,8 +37,18 @@ namespace FundRaiser.Models
 
         //status progress
 
+        //public string UserId { get; set; }
+        //
+        //public DateTime StartDate { get; set; }
+
         //public AspNetUsers User { get; set; }
         //public ICollection<Benefit> Benefit { get; set; }
         //public ICollection<UsersBenefits> UsersBenefits { get; set; }
+
+        //public Project()
+        //{
+        //    Benefit = new List<Benefit>();
+        //}
+
     }
 }

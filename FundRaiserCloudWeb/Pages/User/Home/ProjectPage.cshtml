@@ -25,11 +25,11 @@
                                         @*<span class="badge bg-dark p-3">@Model.Project..Name</span>*@
                                         <h3 class="text-success"></h3>
                                         <p class="text-secondary">@Html.Raw(Model.Project.Description)</p>
-                                        <div class="form-floating my-2">
+                                        @*<div class="form-floating my-2">
                                             <input asp-for="Count" class="form-control" aria-required="true" />
                                             <label asp-for="Count"></label>
                                             <span asp-validation-for="Count" class="text-danger"></span>
-                                        </div>
+                                        </div>*@
                                     </div>
                                 </div>
                             </div>
@@ -45,7 +45,7 @@
                             <a class="btn btn-success btn-square form-control" style="height:50px;">Back to List</a>
                         </div>
                         <div class="col-12 col-md-6 ">
-                            <button type="submit" class="btn btn-primary btn-square form-control" style="height:50px;">Add to Cart</button>
+                            <button type="submit" class="btn btn-primary btn-square form-control" style="height:50px;">View Benefits</button>
                         </div>
                     </div>
                 </div>

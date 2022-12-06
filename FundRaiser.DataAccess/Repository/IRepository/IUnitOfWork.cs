@@ -10,6 +10,7 @@ namespace FundRaiser.DataAccess.Repository.IRepository
     {
         ICategoryRepository Category { get; }
         IProjectRepository Project { get; }
+        IBenefitRepository Benefit { get; }
         void Save();
     }
 }
