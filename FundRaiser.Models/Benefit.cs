@@ -22,7 +22,7 @@ namespace FundRaiser.Models
         [Range(0, int.MaxValue, ErrorMessage = "Please enter valid integer Number")]
         public double Price { get; set; }
 
-        [ForeignKey("ProjectId")]
+        //[ForeignKey("ProjectId")]
         [Display(Name = "Project")]
         public int ProjectId { get; set; }
         public Project Project { get; set; }

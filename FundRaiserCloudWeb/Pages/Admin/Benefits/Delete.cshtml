@@ -1,0 +1,39 @@
+﻿@page
+@model FundRaiserCloudWeb.Pages.Admin.Benefits.DeleteModel
+
+<form method="post">
+	<input hidden asp-for="Benefit.Id" />	@*id==0 bcs no id fields in both input*@
+	<div class="border p-3 mt-4">
+		<div class="row pb-2">
+			<h2 class="text-primary pl-3">Delete Benefit</h2>
+			<hr />
+		</div>
+		<div class="mb-3">
+			<label asp-for="Benefit.Name"></label>
+			<input asp-for="Benefit.Name" disabled class="form-control" />
+		</div>
+        <div class="mb-3">
+            <label asp-for="Benefit.Description"></label>
+			<input asp-for="Benefit.Description" disabled class="form-control" />
+        </div>
+        <div class="mb-3">
+            <label asp-for="Benefit.Price"></label>
+			<input asp-for="Benefit.Price" disabled class="form-control" />
+        </div>
+        @*<div class="mb-3">
+        <label asp-for="Benefit.ProjectId"></label>
+        <select asp-for="Benefit.ProjectId" asp-items="Model.CategoryList" class="form-select">
+        <option disabled selected>-Select Category-</option>
+        </select>
+        <span asp-validation-for="Benefit.ProjectId" class="text-danger"></span>
+        </div>*@
+		<button type="submit" class="btn btn-danger" style="width:150px">Delete</button>
+		<a asp-page="Index" class="btn btn-secondary" style="width:150px"> Back to List</a>
+	</div>
+</form>
+
+@section Scripts{
+	@{
+		<partial name="_ValidationScriptsPartial" />
+	}
+}
