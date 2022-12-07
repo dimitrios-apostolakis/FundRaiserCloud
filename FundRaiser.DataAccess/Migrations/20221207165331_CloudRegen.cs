@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace FundRaiser.DataAccess.Migrations
 {
-    public partial class addProjectToDb : Migration
+    public partial class CloudRegen : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

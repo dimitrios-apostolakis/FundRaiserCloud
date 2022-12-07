@@ -10,6 +10,9 @@ using System.Text;
 using System.Text.Encodings.Web;
 using System.Threading;
 using System.Threading.Tasks;
+using FundRaiser.DataAccess.Repository;
+using FundRaiser.DataAccess.Repository.IRepository;
+using FundRaiser.Models;
 using FundRaiser.Utility;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
@@ -24,6 +27,8 @@ namespace FundRaiserCloudWeb.Areas.Identity.Pages.Account
 {
     public class RegisterModel : PageModel
     {
+        private readonly IUnitOfWork _unitOfWork;
+        private readonly IWebHostEnvironment _hostEnvironment;
         private readonly SignInManager<IdentityUser> _signInManager;
         private readonly UserManager<IdentityUser> _userManager;
         private readonly IUserStore<IdentityUser> _userStore;
@@ -31,22 +36,27 @@ namespace FundRaiserCloudWeb.Areas.Identity.Pages.Account
         private readonly ILogger<RegisterModel> _logger;
         private readonly IEmailSender _emailSender;
         private readonly RoleManager<IdentityRole> _roleManager;
+        private ProjectCreator ProjectCreator;
+        private Backer Backer;
 
         public RegisterModel(
             UserManager<IdentityUser> userManager,
             IUserStore<IdentityUser> userStore,
-            SignInManager<IdentityUser> signInManager,
-            ILogger<RegisterModel> logger,
-            IEmailSender emailSender,
-            RoleManager<IdentityRole> roleManager)
-        {
-            _userManager = userManager;
-            _userStore = userStore;
-            _emailStore = GetEmailStore();
-            _signInManager = signInManager;
-            _logger = logger;
-            _emailSender = emailSender;
-            _roleManager = roleManager;
+                SignInManager<IdentityUser> signInManager,
+                ILogger<RegisterModel> logger,
+                IEmailSender emailSender,
+                RoleManager<IdentityRole> roleManager,
+                IUnitOfWork unitOfWork, IWebHostEnvironment hostEnvironment)
+            {
+                _userManager = userManager;
+                _userStore = userStore;
+                _emailStore = GetEmailStore();
+                _signInManager = signInManager;
+                _logger = logger;
+                _emailSender = emailSender;
+                _roleManager = roleManager;
+                _unitOfWork = unitOfWork;
+                _hostEnvironment = hostEnvironment;
         }
 
         /// <summary>
@@ -133,12 +143,28 @@ namespace FundRaiserCloudWeb.Areas.Identity.Pages.Account
                     if (role == SD.ProjectCreatorRole)
                     {
                         await _userManager.AddToRoleAsync(user, SD.ProjectCreatorRole);
+                        ProjectCreator = new()
+                        {
+                            UserName = user.UserName,
+                            Email = user.Email,
+                            Password = user.PasswordHash,
+                            RegistrationDate = DateTime.Now
+                        };
+                        _unitOfWork.ProjectCreator.Add(ProjectCreator);
                     }
                     else
                     {
                         await _userManager.AddToRoleAsync(user, SD.BackerRole);
+                        Backer = new()
+                        {
+                            UserName = user.UserName,
+                            Email = user.Email,
+                            Password = user.PasswordHash,
+                            RegistrationDate = DateTime.Now
+                        };
+                        _unitOfWork.Backer.Add(Backer);
                     }
-
+                    _unitOfWork.Save();
                     _logger.LogInformation("User created a new account with password.");
 
                     var userId = await _userManager.GetUserIdAsync(user);
@@ -153,6 +179,7 @@ namespace FundRaiserCloudWeb.Areas.Identity.Pages.Account
                     await _emailSender.SendEmailAsync(Input.Email, "Confirm your email",
                         $"Please confirm your account by <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>clicking here</a>.");
 
+                    
                     if (_userManager.Options.SignIn.RequireConfirmedAccount)
                     {
                         return RedirectToPage("RegisterConfirmation", new { email = Input.Email, returnUrl = returnUrl });
