@@ -1,16 +1,16 @@
 ﻿@page
-@model FundRaiserCloudWeb.Pages.Admin.Projects.IndexModel
+@model FundRaiserCloudWeb.Pages.Admin.Benefits1.IndexModel
 
 @*<partial name="_Notification" />*@ @*Moved to _Layout for been shown across all pages*@
 
 <div class="container p-3">
     <div class="row pt-4">
         <div class="col-6">
-            <h2 class="text-primary">Project List</h2>
+            <h2 class="text-primary">Benefit List</h2>
         </div>
         <div class="col-6 text-end">
             <a asp-page="upsert" class="btn btn-primary">   
-                <i class="bi bi-plus-circle"></i> &nbsp; Create New Project
+                <i class="bi bi-plus-circle"></i> &nbsp; Create New Benefit
             </a>
         </div>
     </div>
@@ -20,11 +20,10 @@
     <table id="DT_load" class="table table-bordered table-striped" style="width:100%">
         <thead>
             <tr>
-                <th>Title</th>
-                <th>Goal</th>
-                <th>Days</th>
-                <th>Category</th>
-                @*<th>Progress</th>*@
+                <th>Name</th>
+                @*<th>Description</th>*@
+                <th>Price</th>
+                <th>Project Title</th>
                 <th></th>
             </tr>
         </thead>

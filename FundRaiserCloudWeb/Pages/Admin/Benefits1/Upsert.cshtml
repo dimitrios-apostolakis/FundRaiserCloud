@@ -1,0 +1,74 @@
+﻿@page
+@model FundRaiserCloudWeb.Pages.Admin.Benefits1.UpsertModel
+
+<form method="post" enctype="multipart/form-data">
+    @*import data*@
+    <input asp-for="Benefit.Id" hidden />
+    <div class="border p-3 mt-4">
+        <div class="row pb-2">
+            <div class="col-9">
+                <h2 class="text-primary pl-3">
+                    @(Model.Benefit.Id != 0 ? "Update" : "Create") Benefit
+                </h2>
+                <hr />
+
+
+                <div asp-validation-summary="All"></div>
+                <div class="mb-3">
+                    <label asp-for="Benefit.Name"></label>
+                    <input asp-for="Benefit.Name" class="form-control" />
+                    <span asp-validation-for="Benefit.Name" class="text-danger"></span>
+                </div>
+                <div class="mb-3">
+                    <label asp-for="Benefit.Description"></label>
+                    <textarea asp-for="Benefit.Description" class="form-control"></textarea>
+                    <span asp-validation-for="Benefit.Description" class="text-danger"></span>
+                </div>
+                <div class="mb-3">
+                    <label asp-for="Benefit.Price"></label>
+                    <input asp-for="Benefit.Price" class="form-control" />
+                    <span asp-validation-for="Benefit.Price" class="text-danger"></span>
+                </div>
+                <div class="mb-3">
+                    <label asp-for="Benefit.ProjectId"></label>
+                    <select asp-for="Benefit.ProjectId" asp-items="Model.ProjectList" class="form-select">
+                        <option disabled selected>-Select Category-</option>
+                    </select>
+                    <span asp-validation-for="Benefit.ProjectId" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="col-3">
+                
+            </div>
+        </div>
+        @if (Model.Benefit.Id != 0)
+        {
+            <button type="submit" class="btn btn-primary" style="width:150px;">Update</button>
+        }
+        else
+        {
+            <button type="submit" onclick="return ValidateInput()" class="btn btn-primary" style="width:150px;">Create</button>
+        }
+        <a asp-page="Index" class="btn btn-secondary" style="width:150px"> Back to List</a>
+    </div>
+</form>
+
+@section Scripts{
+    <script>
+        tinymce.init({
+            selector: 'textarea',
+            plugins: 'anchor autolink charmap codesample emoticons image link lists media searchreplace table visualblocks wordcount checklist mediaembed casechange export formatpainter pageembed linkchecker a11ychecker tinymcespellchecker permanentpen powerpaste advtable advcode editimage tinycomments tableofcontents footnotes mergetags autocorrect',
+            toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link image media table mergetags | addcomment showcomments | spellcheckdialog a11ycheck | align lineheight | checklist numlist bullist indent outdent | emoticons charmap | removeformat',
+            tinycomments_mode: 'embedded',
+            tinycomments_author: 'Author name',
+            mergetags_list: [
+                { value: 'First.Name', title: 'First Name' },
+                { value: 'Email', title: 'Email' },
+            ]
+        });
+        
+    </script>
+    @{
+        <partial name="_ValidationScriptsPartial" />
+    }
+}
