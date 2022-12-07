@@ -39,7 +39,7 @@ namespace FundRaiser.Models
 
         //public string UserId { get; set; }
         //
-        //public DateTime StartDate { get; set; }
+        //public DateTime StartDate { get; set; } = DateTime.Now;
 
         //public AspNetUsers User { get; set; }
         //public ICollection<Benefit> Benefit { get; set; }

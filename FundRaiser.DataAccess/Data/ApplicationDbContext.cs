@@ -13,6 +13,9 @@ namespace FundRaiser.DataAccess.Data
         public DbSet<Project> Project { get; set; }
         public DbSet<Benefit> Benefit { get; set; }
         public DbSet<Dashboard> Dashboard { get; set; }
+        public DbSet<Transaction> Transaction { get; set; }
         
+
+
     }
 }
