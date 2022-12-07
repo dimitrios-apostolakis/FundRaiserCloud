@@ -13,8 +13,8 @@ namespace FundRaiser.DataAccess.Repository.IRepository
         IBenefitRepository Benefit { get; }
         IDashboardRepository Dashboard { get; }
         ITransactionRepository Transaction { get; }
+        IProjectBenefitRepository ProjectBenefit { get; }
         
-
         void Save();
     }
 }
