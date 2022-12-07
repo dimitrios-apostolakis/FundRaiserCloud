@@ -1,5 +1,4 @@
-﻿using Crowdfunding.Models;
-using FundRaiser.Models;
+﻿using FundRaiser.Models;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
@@ -15,7 +14,8 @@ namespace FundRaiser.DataAccess.Data
         public DbSet<Benefit> Benefit { get; set; }
         public DbSet<Dashboard> Dashboard { get; set; }
         public DbSet<Transaction> Transaction { get; set; }
-        public DbSet<ProjectBenefit> ProjectBenefit { get; set; }
+        public DbSet<Backer> Backer { get; set; }
+        public DbSet<ProjectCreator> ProjectCreator { get; set; }
 
     }
 }

@@ -27,6 +27,10 @@ namespace FundRaiser.DataAccess.Repository
             objFromDb.ProjectGoal = obj.ProjectGoal;
             objFromDb.NumberOfBenefits = obj.NumberOfBenefits;
             objFromDb.CategoryId = obj.CategoryId;
+            objFromDb.Category = obj.Category;
+            objFromDb.Backers = obj.Backers;
+            objFromDb.ProjectCreator = obj.ProjectCreator;
+            objFromDb.ProjectBenefits = obj.ProjectBenefits;
             if (objFromDb.Image != null )
             {
                 objFromDb.Image= obj.Image;

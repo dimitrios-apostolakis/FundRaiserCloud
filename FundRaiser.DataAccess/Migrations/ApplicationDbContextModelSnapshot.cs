@@ -22,6 +22,61 @@ namespace FundRaiser.DataAccess.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
 
+            modelBuilder.Entity("BackerBenefit", b =>
+                {
+                    b.Property<int>("BackersId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("BenefitsId")
+                        .HasColumnType("int");
+
+                    b.HasKey("BackersId", "BenefitsId");
+
+                    b.HasIndex("BenefitsId");
+
+                    b.ToTable("BackerBenefit");
+                });
+
+            modelBuilder.Entity("BackerProject", b =>
+                {
+                    b.Property<int>("BackersId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("InvestedProjectsId")
+                        .HasColumnType("int");
+
+                    b.HasKey("BackersId", "InvestedProjectsId");
+
+                    b.HasIndex("InvestedProjectsId");
+
+                    b.ToTable("BackerProject");
+                });
+
+            modelBuilder.Entity("FundRaiser.Models.Backer", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<string>("Email")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Password")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("RegistrationDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("UserName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Backer");
+                });
+
             modelBuilder.Entity("FundRaiser.Models.Benefit", b =>
                 {
                     b.Property<int>("Id")
@@ -119,6 +174,9 @@ namespace FundRaiser.DataAccess.Migrations
                     b.Property<int>("NumberOfBenefits")
                         .HasColumnType("int");
 
+                    b.Property<int>("ProjectCreatorId")
+                        .HasColumnType("int");
+
                     b.Property<double>("ProjectGoal")
                         .HasColumnType("float");
 
@@ -130,7 +188,68 @@ namespace FundRaiser.DataAccess.Migrations
 
                     b.HasIndex("CategoryId");
 
+                    b.HasIndex("ProjectCreatorId");
+
                     b.ToTable("Project");
+                });
+
+            modelBuilder.Entity("FundRaiser.Models.ProjectCreator", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<string>("Email")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Password")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("RegistrationDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("UserName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("ProjectCreator");
+                });
+
+            modelBuilder.Entity("FundRaiser.Models.Transaction", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<int>("BackerId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("BenefitId")
+                        .HasColumnType("int");
+
+                    b.Property<bool>("ContainsBenefit")
+                        .HasColumnType("bit");
+
+                    b.Property<double>("InvestedVolume")
+                        .HasColumnType("float");
+
+                    b.Property<int>("ProjectId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("BackerId");
+
+                    b.HasIndex("BenefitId");
+
+                    b.HasIndex("ProjectId");
+
+                    b.ToTable("Transaction");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -331,10 +450,40 @@ namespace FundRaiser.DataAccess.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
+            modelBuilder.Entity("BackerBenefit", b =>
+                {
+                    b.HasOne("FundRaiser.Models.Backer", null)
+                        .WithMany()
+                        .HasForeignKey("BackersId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("FundRaiser.Models.Benefit", null)
+                        .WithMany()
+                        .HasForeignKey("BenefitsId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("BackerProject", b =>
+                {
+                    b.HasOne("FundRaiser.Models.Backer", null)
+                        .WithMany()
+                        .HasForeignKey("BackersId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("FundRaiser.Models.Project", null)
+                        .WithMany()
+                        .HasForeignKey("InvestedProjectsId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
             modelBuilder.Entity("FundRaiser.Models.Benefit", b =>
                 {
                     b.HasOne("FundRaiser.Models.Project", "Project")
-                        .WithMany()
+                        .WithMany("ProjectBenefits")
                         .HasForeignKey("ProjectId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -350,7 +499,40 @@ namespace FundRaiser.DataAccess.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("FundRaiser.Models.ProjectCreator", "ProjectCreator")
+                        .WithMany("CreatedProjects")
+                        .HasForeignKey("ProjectCreatorId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.Navigation("Category");
+
+                    b.Navigation("ProjectCreator");
+                });
+
+            modelBuilder.Entity("FundRaiser.Models.Transaction", b =>
+                {
+                    b.HasOne("FundRaiser.Models.Backer", "Backer")
+                        .WithMany()
+                        .HasForeignKey("BackerId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("FundRaiser.Models.Benefit", "Benefit")
+                        .WithMany()
+                        .HasForeignKey("BenefitId");
+
+                    b.HasOne("FundRaiser.Models.Project", "Project")
+                        .WithMany()
+                        .HasForeignKey("ProjectId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Backer");
+
+                    b.Navigation("Benefit");
+
+                    b.Navigation("Project");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -402,6 +584,16 @@ namespace FundRaiser.DataAccess.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("FundRaiser.Models.Project", b =>
+                {
+                    b.Navigation("ProjectBenefits");
+                });
+
+            modelBuilder.Entity("FundRaiser.Models.ProjectCreator", b =>
+                {
+                    b.Navigation("CreatedProjects");
                 });
 #pragma warning restore 612, 618
         }

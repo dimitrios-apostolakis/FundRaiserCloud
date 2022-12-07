@@ -21,9 +21,11 @@ namespace FundRaiser.DataAccess.Repository
         public void Update(Transaction transaction)
         {
             var objFromDb = _db.Transaction.FirstOrDefault(u => u.Id == transaction.Id);
-            objFromDb.Amount = transaction.Amount;
-            objFromDb.ErrorText = transaction.ErrorText;
-            objFromDb.ErrorCode = transaction.ErrorCode;
+            objFromDb.Project = transaction.Project;
+            objFromDb.Backer = transaction.Backer;
+            objFromDb.ContainsBenefit = transaction.ContainsBenefit;
+            objFromDb.InvestedVolume = transaction.InvestedVolume;
+            objFromDb.Benefit = transaction.Benefit;
         }
     }
 }

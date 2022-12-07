@@ -1,5 +1,4 @@
-﻿using Crowdfunding.Models;
-using FundRaiser.DataAccess.Data;
+﻿using FundRaiser.DataAccess.Data;
 using FundRaiser.DataAccess.Repository.IRepository;
 using FundRaiser.Models;
 using System;
@@ -21,7 +20,8 @@ namespace FundRaiser.DataAccess.Repository
             Benefit = new BenefitRepository(_db);
             Dashboard = new DashboardRepository(_db);
             Transaction = new TransactionRepository(_db);
-            ProjectBenefit = new ProjectBenefitRepository(_db); 
+            ProjectCreator = new ProjectCreatorRepository(_db);
+            Backer = new BackerRepository(_db);
         }
 
         public ICategoryRepository Category { get; private set; }
@@ -29,7 +29,8 @@ namespace FundRaiser.DataAccess.Repository
         public IBenefitRepository Benefit { get; private set; }
         public IDashboardRepository Dashboard { get; private set; }
         public ITransactionRepository Transaction { get; private set; }
-        public IProjectBenefitRepository ProjectBenefit { get; private set; }
+        public IBackerRepository Backer { get; private set; }
+        public IProjectCreatorRepository ProjectCreator { get; private set; }
         public void Dispose()
         {
             _db.Dispose();
