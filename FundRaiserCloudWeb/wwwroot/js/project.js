@@ -9,7 +9,7 @@ $(document).ready(function () {
         "columns": [
             { "data": "title", "width": "20%" },
             { "data": "projectGoal", "width": "15%" },
-            { "data": "projectCreator", "width": "15%" },
+            /*{ "data": "projectCreator", "width": "15%" },*/
             { "data": "days", "width": "10%" },
             { "data": "category.name", "width": "10%" },
             
