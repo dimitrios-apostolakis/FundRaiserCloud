@@ -11,8 +11,14 @@ namespace FundRaiser.Models
     {
         [Key]
         public int Id { get; set; }
-        public int ErrorCode { get; set; }
-        public double Amount { get; set; }
-        public string ErrorText { get; set; }
+        public Project Project { get; set; } = null!;
+
+        public Backer Backer { get; set; } = null!;
+
+        public bool ContainsBenefit { get; set; }
+
+        public double InvestedVolume { get; set; }
+
+        public Benefit? Benefit { get; set; }
     }
 }

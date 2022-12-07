@@ -35,6 +35,14 @@ namespace FundRaiser.Models
         public int CategoryId { get; set; }
         public Category Category { get; set; }
 
+        //List of all Backers
+        public List<Backer> Backers { get; set; } = new();
+
+        public ProjectCreator ProjectCreator { get; set; } = null!;
+
+        //List of all benefits for current project
+        public List<Benefit> ProjectBenefits { get; set; } = new();
+
         //status progress
 
         //public string UserId { get; set; }
