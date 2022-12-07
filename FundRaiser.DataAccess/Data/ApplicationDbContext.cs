@@ -12,5 +12,7 @@ namespace FundRaiser.DataAccess.Data
         public DbSet<Category> Category { get; set; }
         public DbSet<Project> Project { get; set; }
         public DbSet<Benefit> Benefit { get; set; }
+        public DbSet<Dashboard> Dashboard { get; set; }
+        
     }
 }
