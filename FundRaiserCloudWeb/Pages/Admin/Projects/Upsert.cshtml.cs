@@ -1,9 +1,11 @@
 using FundRaiser.DataAccess.Data;
 using FundRaiser.DataAccess.Repository.IRepository;
 using FundRaiser.Models;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 
 namespace FundRaiserCloudWeb.Pages.Admin.Projects
 {
@@ -12,6 +14,8 @@ namespace FundRaiserCloudWeb.Pages.Admin.Projects
     {
         private readonly IUnitOfWork _unitOfWork;
         private readonly IWebHostEnvironment _hostEnvironment;
+        private UserManager<IdentityUser> UserManager;
+
         //[BindProperty]    //more than 1 should be put individually
         public Project Project { get; set; }
         public IEnumerable<SelectListItem> CategoryList { get; set; }
@@ -51,8 +55,10 @@ namespace FundRaiserCloudWeb.Pages.Admin.Projects
 					files[0].CopyTo(fileStream);
 				}
 				Project.Image = @"\images\projectItems\" + fileName_new + extension;
-				_unitOfWork.Project.Add(Project);
-				_unitOfWork.Save();
+                //Project.ProjectCreator = _unitOfWork.ProjectCreator.GetFirstOrDefault(a => a.UserName == UserManager.GetUserName(User));
+                Project.ProjectCreator = _unitOfWork.ProjectCreator.GetFirstOrDefault(a => a.UserName == "alkis1@gmail.com");
+                _unitOfWork.Project.Add(Project);
+                _unitOfWork.Save();
 			}
 			else
 			{

@@ -38,7 +38,8 @@ namespace FundRaiser.Models
         //List of all Backers
         public List<Backer> Backers { get; set; } = new();
 
-        public ProjectCreator ProjectCreator { get; set; } = null!;
+        public int ProjectCreatorId { get; set; }
+        public ProjectCreator ProjectCreator { get; set; }
 
         //List of all benefits for current project
         public List<Benefit> ProjectBenefits { get; set; } = new();

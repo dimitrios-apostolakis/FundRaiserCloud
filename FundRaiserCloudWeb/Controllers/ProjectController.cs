@@ -20,8 +20,8 @@ namespace FundRaiserCloudWeb.Controllers
         [HttpGet()]
         public IActionResult Get()
 		{
-			var projectList = _unitOfWork.Project.GetAll(includeProperties: "Category");
-			return Json(new { data = projectList });
+			var projectList = _unitOfWork.Project.GetAll(); //includeProperties: "Category"
+            return Json(new { data = projectList });
 		}
 
         [HttpDelete("{id}")]

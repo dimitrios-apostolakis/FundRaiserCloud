@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FundRaiser.DataAccess.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20221207165331_CloudRegen")]
+    [Migration("20221207200648_CloudRegen")]
     partial class CloudRegen
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
