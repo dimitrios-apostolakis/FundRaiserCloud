@@ -58,7 +58,7 @@ namespace FundRaiserCloudWeb.Pages.Admin.Projects
 				Project.Image = @"\images\projectItems\" + fileName_new + extension;
                 
                 //Project.ProjectCreator = _unitOfWork.ProjectCreator.GetFirstOrDefault(a => a.UserName == UserManager.GetUserName(User));
-                Project.ProjectCreator = _unitOfWork.ProjectCreator.GetFirstOrDefault(a => a.UserName == "cr1@ap.com");
+                //Project.ProjectCreator = _unitOfWork.ProjectCreator.GetFirstOrDefault(a => a.UserName == "cr1@ap.com");
                 _unitOfWork.Project.Add(Project);
                 _unitOfWork.Save();
 			}
