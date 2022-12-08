@@ -29,7 +29,7 @@ namespace FundRaiser.DataAccess.Repository
             objFromDb.CategoryId = obj.CategoryId;
             objFromDb.Category = obj.Category;
             objFromDb.Backers = obj.Backers;
-            objFromDb.ProjectCreator = obj.ProjectCreator;
+            //objFromDb.ProjectCreator = obj.ProjectCreator;
             objFromDb.ProjectBenefits = obj.ProjectBenefits;
             if (objFromDb.Image != null )
             {

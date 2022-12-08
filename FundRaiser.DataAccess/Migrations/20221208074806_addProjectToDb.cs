@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace FundRaiser.DataAccess.Migrations
 {
-    public partial class CloudRegen : Migration
+    public partial class addProjectToDb : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -228,7 +228,7 @@ namespace FundRaiser.DataAccess.Migrations
                     NumberOfBenefits = table.Column<int>(type: "int", nullable: false),
                     Image = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     CategoryId = table.Column<int>(type: "int", nullable: false),
-                    ProjectCreatorId = table.Column<int>(type: "int", nullable: false)
+                    ProjectCreatorId = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -243,8 +243,7 @@ namespace FundRaiser.DataAccess.Migrations
                         name: "FK_Project_ProjectCreator_ProjectCreatorId",
                         column: x => x.ProjectCreatorId,
                         principalTable: "ProjectCreator",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "Id");
                 });
 
             migrationBuilder.CreateTable(

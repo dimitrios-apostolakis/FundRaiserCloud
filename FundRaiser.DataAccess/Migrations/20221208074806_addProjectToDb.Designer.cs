@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FundRaiser.DataAccess.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20221207200648_CloudRegen")]
-    partial class CloudRegen
+    [Migration("20221208074806_addProjectToDb")]
+    partial class addProjectToDb
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -176,7 +176,7 @@ namespace FundRaiser.DataAccess.Migrations
                     b.Property<int>("NumberOfBenefits")
                         .HasColumnType("int");
 
-                    b.Property<int>("ProjectCreatorId")
+                    b.Property<int?>("ProjectCreatorId")
                         .HasColumnType("int");
 
                     b.Property<double>("ProjectGoal")
@@ -501,15 +501,11 @@ namespace FundRaiser.DataAccess.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("FundRaiser.Models.ProjectCreator", "ProjectCreator")
+                    b.HasOne("FundRaiser.Models.ProjectCreator", null)
                         .WithMany("CreatedProjects")
-                        .HasForeignKey("ProjectCreatorId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("ProjectCreatorId");
 
                     b.Navigation("Category");
-
-                    b.Navigation("ProjectCreator");
                 });
 
             modelBuilder.Entity("FundRaiser.Models.Transaction", b =>

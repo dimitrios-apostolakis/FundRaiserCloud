@@ -24,6 +24,7 @@ namespace FundRaiser.DataAccess.Repository
             objFromDb.Name = obj.Name;
             objFromDb.Description = obj.Description;
             objFromDb.Price = obj.Price;
+            objFromDb.ProjectId = obj.ProjectId;
             objFromDb.Project = obj.Project;
             objFromDb.Backers = obj.Backers;
         }
