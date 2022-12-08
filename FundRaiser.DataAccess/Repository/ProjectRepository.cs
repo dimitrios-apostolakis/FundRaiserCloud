@@ -1,6 +1,7 @@
 ﻿using FundRaiser.DataAccess.Data;
 using FundRaiser.DataAccess.Repository.IRepository;
 using FundRaiser.Models;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,6 +21,7 @@ namespace FundRaiser.DataAccess.Repository
         
         public void Update(Project obj)
         {
+            //_db.Project/*.Include(u => u.Category)*/.Include(u => u.ProjectCreator);
             var objFromDb = _db.Project.FirstOrDefault(u => u.Id == obj.Id);
             objFromDb.Title = obj.Title;
             objFromDb.Description = obj.Description;
@@ -29,7 +31,7 @@ namespace FundRaiser.DataAccess.Repository
             objFromDb.CategoryId = obj.CategoryId;
             objFromDb.Category = obj.Category;
             objFromDb.Backers = obj.Backers;
-            //objFromDb.ProjectCreator = obj.ProjectCreator;
+            objFromDb.ProjectCreator = obj.ProjectCreator;
             objFromDb.ProjectBenefits = obj.ProjectBenefits;
             if (objFromDb.Image != null )
             {

@@ -174,7 +174,7 @@ namespace FundRaiser.DataAccess.Migrations
                     b.Property<int>("NumberOfBenefits")
                         .HasColumnType("int");
 
-                    b.Property<int?>("ProjectCreatorId")
+                    b.Property<int>("ProjectCreatorId")
                         .HasColumnType("int");
 
                     b.Property<double>("ProjectGoal")
@@ -499,11 +499,15 @@ namespace FundRaiser.DataAccess.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("FundRaiser.Models.ProjectCreator", null)
+                    b.HasOne("FundRaiser.Models.ProjectCreator", "ProjectCreator")
                         .WithMany("CreatedProjects")
-                        .HasForeignKey("ProjectCreatorId");
+                        .HasForeignKey("ProjectCreatorId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Category");
+
+                    b.Navigation("ProjectCreator");
                 });
 
             modelBuilder.Entity("FundRaiser.Models.Transaction", b =>

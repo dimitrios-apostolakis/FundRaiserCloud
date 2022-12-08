@@ -19,7 +19,7 @@ namespace FundRaiser.DataAccess.Repository
         {
             _db = db;
 			//ObjType,Category
-			//_db.Project.Include(u => u.Category).Include(u => u.ProjectCreator);
+			//_db.Project/*.Include(u => u.Category)*/.Include(u => u.ProjectCreator);
 			this.dbSet = db.Set<T>();
         }
         public void Add(T entity)

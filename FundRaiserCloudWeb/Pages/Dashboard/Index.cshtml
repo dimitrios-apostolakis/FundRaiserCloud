@@ -1,0 +1,28 @@
+﻿@page
+@model FundRaiserCloudWeb.Pages.Dashboard.IndexModel
+@using Microsoft.AspNetCore.Identity
+
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
+
+<body>
+    
+    <div class="nav-item">
+        <h1> <a id="manage" class="nav-link" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Hello @UserManager.GetUserName(User)! </a></h1>
+    </div>
+    @*@if ( UserManager.GetUsersInRoleAsync)*@
+    {
+        <table id="bestid" class="table table-bordered table-striped" style="width:100%">
+            <thead>
+                <tr>
+                    <th>Title</th>
+                    <th>Goal</th>
+                    @*<th>Project Creator</th>*@
+                    <th>Days</th>
+                    <th>Category</th>
+                    <th></th>
+                </tr>
+            </thead>
+         </table>
+    }
+</body>

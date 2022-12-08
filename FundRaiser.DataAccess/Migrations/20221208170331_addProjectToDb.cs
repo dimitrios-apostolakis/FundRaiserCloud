@@ -228,7 +228,7 @@ namespace FundRaiser.DataAccess.Migrations
                     NumberOfBenefits = table.Column<int>(type: "int", nullable: false),
                     Image = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     CategoryId = table.Column<int>(type: "int", nullable: false),
-                    ProjectCreatorId = table.Column<int>(type: "int", nullable: true)
+                    ProjectCreatorId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -243,7 +243,8 @@ namespace FundRaiser.DataAccess.Migrations
                         name: "FK_Project_ProjectCreator_ProjectCreatorId",
                         column: x => x.ProjectCreatorId,
                         principalTable: "ProjectCreator",
-                        principalColumn: "Id");
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(

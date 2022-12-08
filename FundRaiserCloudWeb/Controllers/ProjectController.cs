@@ -20,7 +20,7 @@ namespace FundRaiserCloudWeb.Controllers
         [HttpGet()]
         public IActionResult Get()
 		{
-			var projectList = _unitOfWork.Project.GetAll(includeProperties: "Category"); //includeProperties: "Category"
+			var projectList = _unitOfWork.Project.GetAll(includeProperties: "Category"); //includeProperties: "Category,ProjectCreator"
             return Json(new { data = projectList });
 		}
 
