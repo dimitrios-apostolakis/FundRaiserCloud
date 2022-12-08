@@ -6,23 +6,31 @@
 @inject UserManager<IdentityUser> UserManager
 
 <body>
-    
     <div class="nav-item">
-        <h1> <a id="manage" class="nav-link" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Hello @UserManager.GetUserName(User)! </a></h1>
+        <h1> <a id="manage" class="nav-link" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Dashboard of @UserManager.GetUserName(User)! </a></h1>
     </div>
-    @*@if ( UserManager.GetUsersInRoleAsync)*@
-    {
+        <h2></h2>
+        <h3>Projects</h3>
         <table id="bestid" class="table table-bordered table-striped" style="width:100%">
             <thead>
                 <tr>
-                    <th>Title</th>
-                    <th>Goal</th>
-                    @*<th>Project Creator</th>*@
-                    <th>Days</th>
+                    <th>Project Title</th>
+                    <th>Days Remaining</th>
+                    <th>Invested Volume</th>
                     <th>Category</th>
-                    <th></th>
                 </tr>
             </thead>
          </table>
-    }
+
+    <h2></h2>
+    <h3>List of Benefits</h3>
+    <table id="bestid" class="table table-bordered table-striped" style="width:100%">
+        <thead>
+            <tr>
+                <th>Project</th>
+                <th>Description</th>
+                <th>Invested Amount</th>
+            </tr>
+        </thead>
+    </table>
 </body>
